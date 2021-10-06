@@ -1,0 +1,21 @@
+{
+  "name": "@quenk/dfront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Quenk Technologies <info@quenk.com> (http://quenk.com)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@quenk/frontend-routers": "^1.0.0",
+    "@quenk/jouvert": "^0.10.31"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.3",
+    "@types/qs": "^6.9.7",
+    "@types/uuid": "^8.3.1",
+    "typescript": "^4.4.3"
+  }
+}
