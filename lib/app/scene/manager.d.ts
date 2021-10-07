@@ -1,6 +1,39 @@
+import { Object } from '@quenk/noni/lib/data/jsonx';
 import { View } from '@quenk/wml';
-import { Pagination } from '@quenk/jouvert/lib/app/remote/model';
+import { Pagination, SearchResult } from '@quenk/jouvert/lib/app/remote/model';
+import { ExecOnComplete } from './remote/handlers';
 import { DScene } from './';
+/**
+ * ShowTableAfterOk populates and displays the table after receiving a response
+ * with data.
+ */
+export declare class ShowTableAfterOk<D extends Object, M> extends ExecOnComplete<SearchResult<D>> {
+    manager: DManager<D, M>;
+    constructor(manager: DManager<D, M>);
+}
+/**
+ * ShowTableAfterNoContent displays the table without data after receiving a
+ * response with no data.
+ */
+export declare class ShowTableAfterNoContent<D extends Object, M> extends ExecOnComplete<SearchResult<D>> {
+    manager: DManager<D, M>;
+    constructor(manager: DManager<D, M>);
+}
+/**
+ * UpdateTableAfterOk updates the table with data received from a response.
+ */
+export declare class UpdateTableAfterOk<D extends Object, M> extends ExecOnComplete<SearchResult<D>> {
+    manager: DManager<D, M>;
+    constructor(manager: DManager<D, M>);
+}
+/**
+ * UpdateTableAfterNoContent updates the table after a response with no data
+ * is received.
+ */
+export declare class UpdateTableAfterNoContent<D extends Object, M> extends ExecOnComplete<SearchResult<D>> {
+    manager: DManager<D, M>;
+    constructor(manager: DManager<D, M>);
+}
 /**
  * TableSection
  */
