@@ -62,3 +62,23 @@ export declare class OrOnClientError<T> extends AbstractCompleteHandler<T> {
     constructor(condition: (r: Response<Object>) => boolean, onTrue: CompleteHandler<Object>, onFalse: CompleteHandler<Object>);
     onClientError(r: Response<Object>): void;
 }
+/**
+ * SlidingOnComplete uses a different CompleteHandler from the list provided
+ * for each successful response until the last one is reached.
+ */
+export declare class SlidingOnComplete<T> extends AbstractCompleteHandler<T> {
+    handlers: CompleteHandler<T>[];
+    constructor(handlers: CompleteHandler<T>[]);
+    ptr: number;
+    onComplete(r: Response<T>): void;
+}
+/**
+ * SlidingOnClientError uses a different CompleteHandler from the list provided
+ * for each client error response until the last one is reached.
+ */
+export declare class SlidingOnClientError<T> extends AbstractCompleteHandler<T> {
+    handlers: CompleteHandler<T>[];
+    constructor(handlers: CompleteHandler<T>[]);
+    ptr: number;
+    onClientError(r: Response<Object>): void;
+}

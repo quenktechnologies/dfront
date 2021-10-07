@@ -17,9 +17,9 @@ import { Object } from '@quenk/noni/lib/data/jsonx';
 import { Response } from '@quenk/jhr/lib/response';
 import { Code } from '@quenk/jhr/lib/status';
 
-import { 
-  AbstractCompleteHandler, 
-  CompleteHandler 
+import {
+    AbstractCompleteHandler,
+    CompleteHandler
 } from '@quenk/jouvert/lib/app/remote/callback';
 
 /**
@@ -101,6 +101,56 @@ export class OrOnClientError<T> extends AbstractCompleteHandler<T> {
         let target = this.condition(r) ? this.onTrue : this.onFalse;
 
         target.onClientError(r);
+
+    }
+
+}
+
+/**
+ * SlidingOnComplete uses a different CompleteHandler from the list provided
+ * for each successful response until the last one is reached.
+ */
+export class SlidingOnComplete<T> extends AbstractCompleteHandler<T> {
+
+    constructor(public handlers: CompleteHandler<T>[]) { super(); }
+
+    ptr = 0;
+
+    onComplete(r: Response<T>) {
+
+        let { handlers, ptr } = this;
+
+        if (handlers[ptr]) {
+
+            handlers[ptr].onComplete(r);
+            ptr++;
+
+        }
+
+    }
+
+}
+
+/**
+ * SlidingOnClientError uses a different CompleteHandler from the list provided
+ * for each client error response until the last one is reached.
+ */
+export class SlidingOnClientError<T> extends AbstractCompleteHandler<T> {
+
+    constructor(public handlers: CompleteHandler<T>[]) { super(); }
+
+    ptr = 0;
+
+    onClientError(r: Response<Object>) {
+
+        let { handlers, ptr } = this;
+
+        if (handlers[ptr]) {
+
+            handlers[ptr].onClientError(r);
+            ptr++;
+
+        }
 
     }
 
