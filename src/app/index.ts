@@ -54,17 +54,17 @@ export abstract class DApp extends JApp {
     accept(msg: Message) {
 
         if (msg instanceof Show)
-            this.showView(msg.view);
+            this.show(msg.view);
         else
             this.onMessage(msg);
 
     }
 
     /**
-     * showView should be overridden to implement how the view is actually 
+     * show should be overridden to implement how the view is actually 
      * displayed.
      */
-    showView(_: View) { }
+    show(_: View) { }
 
     /**
      * onMessage can be overridden to listen to messages sent to the root actor

@@ -35,10 +35,10 @@ export declare abstract class DApp extends JApp {
      */
     accept(msg: Message): void;
     /**
-     * showView should be overridden to implement how the view is actually
+     * show should be overridden to implement how the view is actually
      * displayed.
      */
-    showView(_: View): void;
+    show(_: View): void;
     /**
      * onMessage can be overridden to listen to messages sent to the root actor
      * (the app).
