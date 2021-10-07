@@ -17,7 +17,10 @@ import { Object } from '@quenk/noni/lib/data/jsonx';
 import { Response } from '@quenk/jhr/lib/response';
 import { Code } from '@quenk/jhr/lib/status';
 
-import { AbstractCompleteHandler, CompleteHandler } from '@quenk/jouvert/lib/app/remote/callback';
+import { 
+  AbstractCompleteHandler, 
+  CompleteHandler 
+} from '@quenk/jouvert/lib/app/remote/callback';
 
 /**
  * ExecOnComplete invokes the provided callback when the HTTP response code

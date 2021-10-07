@@ -39,8 +39,7 @@ export declare class UpdateTableAfterNoContent<D extends Object, M> extends Exec
  */
 export interface TableSection<D> {
     id: string;
-    pagination: Pagination;
-    sort: string;
+    pagination?: Pagination;
     data: D[];
 }
 /**

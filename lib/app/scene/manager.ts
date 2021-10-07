@@ -25,7 +25,7 @@ export class ShowTableAfterOk<D extends Object, M>
         super(status.OK, r => {
 
             this.manager.values.table.data = r.body.data;
-            this.manager.values.table.pagination = r.body.meta.pagination;
+            this.manager.values.table.pagination = r.body.meta?.pagination;
             this.manager.show();
 
         });
@@ -109,9 +109,7 @@ export interface TableSection<D> {
 
     id: string,
 
-    pagination: Pagination,
-
-    sort: string,
+    pagination?: Pagination,
 
     data: D[]
 
