@@ -3,9 +3,7 @@ import { View } from '@quenk/wml';
 import { Case } from '@quenk/potoo/lib/actor/resident/case';
 import { AppSceneMessage } from '@quenk/jouvert/lib/app/scene';
 import { FormListener, FormAborted, FormSaved } from '@quenk/jouvert/lib/app/scene/form/listener';
-import { RemoteModelFactory } from '@quenk/jouvert/lib/app/remote/model/factory';
-import { Result } from '@quenk/jouvert/lib/app/remote/model';
-import { CompleteHandler } from '@quenk/jouvert/lib/app/remote/callback';
+import { CompleteHandlerSpec, RemoteModelFactory } from '@quenk/jouvert/lib/app/remote/model/factory';
 import { Resume } from '@quenk/jouvert/lib/app/director';
 import { AppScene } from '@quenk/jouvert/lib/app/scene';
 import { Request } from '@quenk/frontend-routers/lib/hash';
@@ -42,7 +40,7 @@ export declare abstract class DScene<M> extends AppScene<Request, DSceneMessage<
      *
      * TODO: Cache the result.
      */
-    getModel<T extends Object>(path: string, handler?: CompleteHandler<Result<T>>): import("@quenk/jouvert/lib/app/remote/model").RemoteModel<Object>;
+    getModel<T extends Object>(path: string, handler?: CompleteHandlerSpec<T>): import("@quenk/jouvert/lib/app/remote/model").RemoteModel<Object>;
     /**
      * afterShow can be overridden to preform actions after the view has been
      * shown.

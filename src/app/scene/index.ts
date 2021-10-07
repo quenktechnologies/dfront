@@ -12,9 +12,10 @@ import {
     FormAbortedCase,
     FormSavedCase
 } from '@quenk/jouvert/lib/app/scene/form/listener';
-import { RemoteModelFactory } from '@quenk/jouvert/lib/app/remote/model/factory';
-import { Result } from '@quenk/jouvert/lib/app/remote/model';
-import { CompleteHandler } from '@quenk/jouvert/lib/app/remote/callback';
+import { 
+  CompleteHandlerSpec, 
+  RemoteModelFactory 
+} from '@quenk/jouvert/lib/app/remote/model/factory';
 import { Resume, Reload } from '@quenk/jouvert/lib/app/director';
 import { AppScene } from '@quenk/jouvert/lib/app/scene';
 
@@ -80,10 +81,7 @@ export abstract class DScene<M>
      *
      * TODO: Cache the result.
      */
-    getModel<T extends Object>(
-        path: string,
-        handler?: CompleteHandler<Result<T>>
-    ) {
+    getModel<T extends Object>(path: string, handler?: CompleteHandlerSpec<T>) {
 
         return this
             .models
