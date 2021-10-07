@@ -15,7 +15,7 @@
 import { Object } from '@quenk/noni/lib/data/jsonx';
 import { Response } from '@quenk/jhr/lib/response';
 import { Code } from '@quenk/jhr/lib/status';
-import { AbstractCompleteHandler } from '@quenk/jouvert/lib/app/remote/callback';
+import { AbstractCompleteHandler, CompleteHandler } from '@quenk/jouvert/lib/app/remote/callback';
 /**
  * ExecOnComplete invokes the provided callback when the HTTP response code
  * is matched.
@@ -38,5 +38,27 @@ export declare class ExecOnClientError<T> extends AbstractCompleteHandler<T> {
     code: Code;
     callback: (r: Response<Object>) => void;
     constructor(code: Code, callback: (r: Response<Object>) => void);
+    onClientError(r: Response<Object>): void;
+}
+/**
+ * OrOnComplete uses a condition to determine which of two handlers
+ * to invoke on a successful response.
+ */
+export declare class OrOnComplete<T> extends AbstractCompleteHandler<T> {
+    condition: (r: Response<T>) => boolean;
+    onTrue: CompleteHandler<T>;
+    onFalse: CompleteHandler<T>;
+    constructor(condition: (r: Response<T>) => boolean, onTrue: CompleteHandler<T>, onFalse: CompleteHandler<T>);
+    onComplete(r: Response<T>): void;
+}
+/**
+ * OrOnClientError uses a condition to determine which of two handlers
+ * to invoke on a client error response.
+ */
+export declare class OrOnClientError<T> extends AbstractCompleteHandler<T> {
+    condition: (r: Response<Object>) => boolean;
+    onTrue: CompleteHandler<Object>;
+    onFalse: CompleteHandler<Object>;
+    constructor(condition: (r: Response<Object>) => boolean, onTrue: CompleteHandler<Object>, onFalse: CompleteHandler<Object>);
     onClientError(r: Response<Object>): void;
 }
