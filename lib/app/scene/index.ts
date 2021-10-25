@@ -1,5 +1,3 @@
-import { Object } from '@quenk/noni/lib/data/jsonx';
-
 import { View } from '@quenk/wml';
 
 import { Case } from '@quenk/potoo/lib/actor/resident/case';
@@ -12,17 +10,13 @@ import {
     FormAbortedCase,
     FormSavedCase
 } from '@quenk/jouvert/lib/app/scene/form/listener';
-import { 
-  CompleteHandlerSpec, 
-  RemoteModelFactory 
-} from '@quenk/jouvert/lib/app/remote/model/factory';
 import { Resume, Reload } from '@quenk/jouvert/lib/app/director';
 import { AppScene } from '@quenk/jouvert/lib/app/scene';
+import { Show } from '@quenk/jouvert/lib/app/service/view';
 
 import { Request } from '@quenk/frontend-routers/lib/hash';
-import { Show, DApp } from '../';
 
-export const BACKGROUND_REMOTE = 'remote.background';
+import { DApplication } from '../';
 
 /**
  * DSceneMessage type.
@@ -57,9 +51,11 @@ export abstract class DScene<M>
 
     constructor(
         public resume: Resume<Request>,
-        public app: DApp) { super(resume, app); }
+        public app: DApplication) { super(resume, app); }
 
     abstract view: View;
+
+    name = this.self();
 
     receive = <Case<DSceneMessage<M>>[]>[
 
@@ -70,24 +66,6 @@ export abstract class DScene<M>
         new FormSavedCase(this)
 
     ];
-
-    models = RemoteModelFactory.getInstance(
-        t => this.spawn(t),
-        this.app.getAddressFor(BACKGROUND_REMOTE)
-    );
-
-    /**
-     * getModel provides a RemoteModel instance for the specified path.
-     *
-     * TODO: Cache the result.
-     */
-    getModel<T extends Object>(path: string, handler?: CompleteHandlerSpec<T>) {
-
-        return this
-            .models
-            .create(path, handler);
-
-    }
 
     /**
      * afterShow can be overridden to preform actions after the view has been
@@ -126,8 +104,11 @@ export abstract class DScene<M>
      */
     show(): DScene<M> {
 
-        this.tell(this.resume.director, new Show(this.view, this.self()));
+        this.tell(this.resume.director, 
+          new Show(this.name, this.view, this.self()));
+
         this.afterShow();
+
         return this;
 
     }
