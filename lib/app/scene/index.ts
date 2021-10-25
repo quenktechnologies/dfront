@@ -22,7 +22,7 @@ import { AppScene } from '@quenk/jouvert/lib/app/scene';
 import { Request } from '@quenk/frontend-routers/lib/hash';
 import { Show, DApp } from '../';
 
-export const REMOTE_BACKGROUND_SERVICE = 'services.remote.background';
+export const BACKGROUND_REMOTE = 'remote.background';
 
 /**
  * DSceneMessage type.
@@ -73,7 +73,7 @@ export abstract class DScene<M>
 
     models = RemoteModelFactory.getInstance(
         t => this.spawn(t),
-        this.app.getAddressFor(REMOTE_BACKGROUND_SERVICE)
+        this.app.getAddressFor(BACKGROUND_REMOTE)
     );
 
     /**

@@ -8,7 +8,7 @@ import { Resume } from '@quenk/jouvert/lib/app/director';
 import { AppScene } from '@quenk/jouvert/lib/app/scene';
 import { Request } from '@quenk/frontend-routers/lib/hash';
 import { DApp } from '../';
-export declare const REMOTE_BACKGROUND_SERVICE = "services.remote.background";
+export declare const BACKGROUND_REMOTE = "remote.background";
 /**
  * DSceneMessage type.
  */
