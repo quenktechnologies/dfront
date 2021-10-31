@@ -28,8 +28,10 @@ export abstract class DApplication extends JApp {
 
     services: Record<Address> = {};
 
-    models = RemoteModelFactory.getInstance(this,
-        this.services[BACKGROUND_REMOTE]);
+    get models() {
+        return RemoteModelFactory
+        .getInstance(this, this.services[BACKGROUND_REMOTE]);
+    }
 
     /**
      * getModel provides a RemoteModel instance for the specified path.

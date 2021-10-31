@@ -13,7 +13,7 @@ export declare abstract class DApplication extends JApp {
     conf: object;
     constructor(node: HTMLElement, conf?: object);
     services: Record<Address>;
-    models: RemoteModelFactory<Object>;
+    get models(): RemoteModelFactory<Object>;
     /**
      * getModel provides a RemoteModel instance for the specified path.
      *
