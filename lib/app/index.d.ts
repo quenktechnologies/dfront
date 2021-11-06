@@ -2,7 +2,7 @@ import { Object } from '@quenk/noni/lib/data/jsonx';
 import { Record } from '@quenk/noni/lib/data/record';
 import { Address } from '@quenk/potoo/lib/actor/address';
 import { Message } from '@quenk/potoo/lib/actor/message';
-import { JApp } from '@quenk/jouvert/lib/app';
+import { JApp, Template } from '@quenk/jouvert/lib/app';
 import { CompleteHandlerSpec, RemoteModelFactory } from '@quenk/jouvert/lib/app/remote/model/factory';
 export declare const BACKGROUND_REMOTE = "remote.background";
 /**
@@ -25,4 +25,10 @@ export declare abstract class DApplication extends JApp {
      * (the app).
      */
     onMessage(_: Message): void;
+    /**
+     * Any actor spawned by the app directly's address is stored in the services
+     * map.
+     * @override
+     */
+    spawn(t: Template): Address;
 }

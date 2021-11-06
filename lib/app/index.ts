@@ -4,7 +4,7 @@ import { Record, merge3 } from '@quenk/noni/lib/data/record';
 import { Address } from '@quenk/potoo/lib/actor/address';
 import { Message } from '@quenk/potoo/lib/actor/message';
 
-import { JApp } from '@quenk/jouvert/lib/app';
+import { JApp, Template } from '@quenk/jouvert/lib/app';
 import {
     CompleteHandlerSpec,
     RemoteModelFactory
@@ -49,5 +49,18 @@ export abstract class DApplication extends JApp {
      * (the app).
      */
     onMessage(_: Message) { }
+
+  /**
+   * Any actor spawned by the app directly's address is stored in the services
+   * map.
+   * @override
+   */
+  spawn(t:Template): Address {
+
+    let addr = super.spawn(t);
+    this.services[<string>t.id] = addr;
+    return addr;
+
+  }
 
 }
