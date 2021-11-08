@@ -11,8 +11,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@quenk/frontend-routers": "^1.0.0",
-    "@quenk/jouvert": "^0.10.31",
-    "@quenk/potoo": "^3.0.2-0"
+    "@quenk/jouvert": "^0.10.38",
+    "@quenk/potoo": "^3.0.3-0"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",
