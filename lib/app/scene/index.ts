@@ -57,15 +57,19 @@ export abstract class DScene<M>
 
     name = this.self();
 
-    receive = <Case<DSceneMessage<M>>[]>[
+    receive(): Case<DSceneMessage<M>>[] {
 
-        new SuspendCase(this),
+        return <Case<DSceneMessage<M>>[]>[
 
-        new FormAbortedCase(this),
+            new SuspendCase(this),
 
-        new FormSavedCase(this)
+            new FormAbortedCase(this),
 
-    ];
+            new FormSavedCase(this)
+
+        ];
+
+    }
 
     /**
      * afterShow can be overridden to preform actions after the view has been
@@ -104,8 +108,8 @@ export abstract class DScene<M>
      */
     show(): DScene<M> {
 
-        this.tell(this.resume.director, 
-          new Show(this.name, this.view, this.self()));
+        this.tell(this.resume.director,
+            new Show(this.name, this.view, this.self()));
 
         this.afterShow();
 

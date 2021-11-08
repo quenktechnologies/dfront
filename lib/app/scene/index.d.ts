@@ -31,7 +31,7 @@ export declare abstract class DScene<M> extends AppScene<Request, DSceneMessage<
     constructor(resume: Resume<Request>, app: DApplication);
     abstract view: View;
     name: string;
-    receive: Case<DSceneMessage<M>>[];
+    receive(): Case<DSceneMessage<M>>[];
     /**
      * afterShow can be overridden to preform actions after the view has been
      * shown.
